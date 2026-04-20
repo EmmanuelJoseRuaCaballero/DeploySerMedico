@@ -36,6 +36,7 @@ venv\Scripts\activate
 # Instalar dependencias
 pip install django djangorestframework django-cors-headers psycopg2-binary
 pip install djangorestframework-simplejwt
+pip install Pillow
 
 # Configurar Base de Datos
 python manage.py makemigrations
