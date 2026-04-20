@@ -144,10 +144,10 @@ export default function AcademicProgress_estudiante() {
       <div className="space-y-2">
         <div>
           <h1 className="text-3xl font-bold text-foreground">
-            Academic Progress
+            Progreso académico
           </h1>
           <p className="text-muted-foreground mt-2">
-            Monitor your academic progress and grades
+            Supervisa tu progreso académico
           </p>
           <br />
           {/* Procedimientos */}

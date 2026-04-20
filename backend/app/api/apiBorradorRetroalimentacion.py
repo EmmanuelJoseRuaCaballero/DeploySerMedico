@@ -50,7 +50,8 @@ class BorradorRetroalimentacionView(APIView):
                 if (str(borrador.nivel_desempeño) == str(nivel_desempeño)
                     and (borrador.observaciones or "") == (observaciones or "")):
                     return Response(
-                        {"message": "Sin cambios, ya existe el mismo borrador"},
+                        {"message": "Sin cambios, ya existe el mismo borrador",
+                        "condition": True},
                         status=status.HTTP_200_OK
                     )
                     

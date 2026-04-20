@@ -66,10 +66,10 @@ export default function ClinicalPractice_profesor() {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-foreground">
-            Clinical Practice
+            Práctica clínica
           </h1>
           <p className="text-muted-foreground mt-2">
-            Track your clinical practice hours and experiences
+            Haz un seguimiento de tus experiencias clínicas
           </p>
         </div>
 
@@ -104,7 +104,7 @@ export default function ClinicalPractice_profesor() {
                         <div className="text-center">REAL</div>
                         <div className="text-center">SIMULADA</div>
                         <div className="text-center">LUGAR</div>
-                        <div className="text-center">PROFESOR</div>
+                        <div className="text-center">ESTUDIANTE</div>
                       </div>
 
                       {/* OPCIONES */}
@@ -157,11 +157,19 @@ export default function ClinicalPractice_profesor() {
                               </div>
 
                               <div className="text-xs">
-                                {(sub.lugares ?? []).join(", ")}
+                                <ul className="list-disc list-inside space-y-1">
+                                  {(sub.lugares ?? []).map((lugar, i) => (
+                                    <li key={i}>{lugar}</li>
+                                  ))}
+                                </ul>
                               </div>
 
                               <div className="text-xs">
-                                {(sub.estudiantes ?? []).join(", ")}
+                                <ul className="list-disc list-inside space-y-1">
+                                  {(sub.estudiantes ?? []).map((estudiante, i) => (
+                                    <li key={i}>{estudiante}</li>
+                                  ))}
+                                </ul>
                               </div>
                             </div>
                           ))}

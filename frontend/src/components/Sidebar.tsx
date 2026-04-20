@@ -6,6 +6,7 @@ import {
   Stethoscope,
   ClipboardList,
   TrendingUp,
+  Users,
   Settings,
 } from "lucide-react";
 
@@ -23,10 +24,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const allNavItems = [
     { label: "Dashboard", href: `${BASE_ROUTE}/dashboard`, icon: LayoutDashboard, roles: ["Estudiante", "Profesor"]},
     { label: "My Portfolio", href: `${BASE_ROUTE}/portfolio`, icon: BookOpen, roles: [] },
-    { label: "Clinical Practice", href: `${BASE_ROUTE}/clinical-practice`, icon: Stethoscope, roles: ["Estudiante", "Profesor"] },
-    { label: "Evaluations", href: `${BASE_ROUTE}/evaluations`, icon: ClipboardList, roles: ["Estudiante", "Profesor"] },
-    { label: "Academic Progress", href: `${BASE_ROUTE}/academic-progress`, icon: TrendingUp, roles: ["Estudiante", "Profesor"] },
-    { label: "Settings", href: `${BASE_ROUTE}/settings`, icon: Settings, roles: ["Profesor"] },
+    { label: "Práctica clínica", href: `${BASE_ROUTE}/clinical-practice`, icon: Stethoscope, roles: ["Estudiante", "Profesor"] },
+    { label: "Evaluaciones", href: `${BASE_ROUTE}/evaluations`, icon: ClipboardList, roles: ["Estudiante", "Profesor"] },
+    { label: "Progreso académico", href: `${BASE_ROUTE}/academic-progress`, icon: TrendingUp, roles: ["Estudiante", "Profesor"] },
+    { label: "Estudiantes", href: `${BASE_ROUTE}/students`, icon: Users, roles: ["Profesor"] },
+    { label: "Configuración", href: `${BASE_ROUTE}/settings`, icon: Settings, roles: ["Estudiante", "Profesor"] },
   ];
 
   const navItems = allNavItems.filter(item =>
@@ -58,13 +60,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       >
         {/* Logo */}
         <div className="p-6 border-b border-sidebar-border">
-          <div className="bg-white/20 h-16 rounded-lg flex items-center justify-center mb-4">
+          <div className="bg-white h-16 rounded-lg flex items-center justify-center mb-4">
             <span className="text-sm font-medium text-white">
-              University Logo
+              <img src="/assets/unisimon-logo-50-year.png" alt="logo" />
             </span>
           </div>
           <h1 className="text-lg font-bold text-white">
-            E-Portafolio
+            e-Portafolio
           </h1>
         </div>
 

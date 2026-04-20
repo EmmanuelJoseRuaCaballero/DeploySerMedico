@@ -13,6 +13,8 @@ from app.api.apiBorradorAutoevaluacion import BorradorAutoevaluacionView
 from app.api.apiBorradorRetroalimentacion import BorradorRetroalimentacionView
 from app.api.apiEstadisticasProcedimientos import TablaProcedimientosEstudianteView, TablaProcedimientosProfesorView, EstadisticasProcedimientosEstudiantesView
 from app.api.apiCurvaAprendizaje import CurvaAprendizajeView
+from app.api.apiFotoPerfil import FotoPerfilView
+from app.api.apiNotificaciones import NotificacionIndividualEstudianteView, NotificacionIndividualProfesorView, NotificacionesTodasEstudianteView, NotificacionesTodasProfesorView
 
 urlpatterns = [
     # Login - Token
@@ -46,4 +48,11 @@ urlpatterns = [
     path("api/estadisticasprocedimientos/estudiante/", EstadisticasProcedimientosEstudiantesView.as_view(), name="estadisticasprocedimientos"),
     # Curva Aprendizaje
     path("api/curvaaprendizaje/", CurvaAprendizajeView.as_view(), name="curvaaprendizaje"),
+    # Foto Perfil
+    path("api/fotoperfil/", FotoPerfilView.as_view(), name="foto_perfil"),
+    # Notificaciones
+    path("api/notificaciones/profesor/", NotificacionesTodasProfesorView.as_view(), name="notificaciones_todas_profesor"),
+    path("api/notificaciones/profesor/<int:id>/", NotificacionIndividualProfesorView.as_view(), name="notificacion_individual_profesor"),
+    path("api/notificaciones/estudiante/", NotificacionesTodasEstudianteView.as_view(), name="notificaciones_todas_estudiante"),
+    path("api/notificaciones/estudiante/<int:id>/", NotificacionIndividualEstudianteView.as_view(), name="notificacion_individual_estudiante"),
 ]

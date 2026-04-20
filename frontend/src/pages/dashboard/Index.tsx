@@ -140,10 +140,10 @@ export default function Index() {
             {/* Header */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-medical-blue mb-2">
-                E-Portafolio Ser Médico
+                e-Portafolio Ser Médico
               </h1>
               <p className="text-medical-gray text-sm font-medium">
-                Faculty of Medicine – Universidad Simón Bolívar
+                Facultad de Medicina – Universidad Simón Bolívar
               </p>
             </div>
 
@@ -155,7 +155,7 @@ export default function Index() {
                   htmlFor="Username"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Username
+                  Nombre de usuario
                 </label>
                 <input
                   id="username"
@@ -174,7 +174,7 @@ export default function Index() {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Password
+                  Contraseña
                 </label>
                 <div className="relative">
                   <input
@@ -202,7 +202,7 @@ export default function Index() {
                   href="#"
                   className="text-sm font-medium text-medical-red hover:text-medical-blue transition"
                 >
-                  Forgot password?
+                  ¿Olvidó su contraseña?
                 </a>
               </div>
 
@@ -211,10 +211,10 @@ export default function Index() {
                 type="submit"
                 className="w-full bg-medical-blue hover:bg-[hsl(214_75%_15%)] text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md hover:shadow-lg"
               >
-                Sign In
+                Acceder
               </button>
-
-              {/* Divider */}
+              {/* 
+              Divider
               <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-200"></div>
@@ -226,16 +226,17 @@ export default function Index() {
                 </div>
               </div>
 
-              {/* Create Account Button */}
+              Create Account Button 
               <button
                 type="button"
                 className="w-full border-2 border-medical-blue text-medical-blue hover:bg-medical-light font-semibold py-3 rounded-lg transition duration-200"
               >
                 Create Account
               </button>
+              */}
             </form>
 
-            {/* Footer Text */}
+            {/* Footer Text 
             <p className="text-xs text-center text-medical-gray mt-8">
               By signing in, you agree to our{" "}
               <a href="#" className="text-medical-blue hover:underline">
@@ -245,7 +246,7 @@ export default function Index() {
               <a href="#" className="text-medical-blue hover:underline">
                 Privacy Policy
               </a>
-            </p>
+            </p>*/}
           </div>
         </div>
       </div>

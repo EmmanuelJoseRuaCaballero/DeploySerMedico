@@ -88,3 +88,16 @@ class ProcedimientoAutoevaluacionSerializer(serializers.ModelSerializer):
         model = ProcedimientoAutoevaluacion
         fields = "__all__"
 
+class FotoPerilSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = FotoPerfil
+        fields = ["id", "foto_perfil", "user"]
+
+class NotificacionSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Notificaciones
+        fields = ["id", "titulo", "mensaje", "tipo", "leida", "fecha", "user"]

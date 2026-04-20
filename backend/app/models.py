@@ -114,4 +114,33 @@ class ProcedimientoAutoevaluacion(models.Model):
     autoevaluacion = models.ForeignKey(Autoevaluacion, on_delete=models.CASCADE)
     procedimientos = models.ForeignKey(Procedimientos, on_delete=models.CASCADE)
 
+class FotoPerfil(models.Model):
+    foto_perfil = models.ImageField(
+        upload_to = 'fotos_perfil/',
+        null = True,
+        blank = True
+    )
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="foto_perfil")
+
+class Notificaciones(models.Model):
+    TIPOS = (
+        ('info',    'Información'),
+        ('success', 'Éxito'),
+        ('warning', 'Advertencia'),
+        ('error',   'Error'),
+    )
+
+    titulo  = models.CharField(max_length=200)
+    mensaje = models.TextField()
+    tipo    = models.CharField(max_length=10, choices=TIPOS, default='info')
+    leida   = models.BooleanField(default=False)
+    fecha   = models.DateTimeField(auto_now_add=True)
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        ordering = ['-fecha']   

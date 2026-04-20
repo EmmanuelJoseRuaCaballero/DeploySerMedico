@@ -66,10 +66,10 @@ export default function ClinicalPractice_estudiante() {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-foreground">
-            Clinical Practice
+            Práctica clínica
           </h1>
           <p className="text-muted-foreground mt-2">
-            Track your clinical practice hours and experiences
+            Haz un seguimiento de tus experiencias clínicas
           </p>
         </div>
         <Accordion type="multiple" className="space-y-3">
@@ -156,11 +156,19 @@ export default function ClinicalPractice_estudiante() {
                               </div>
 
                               <div className="text-xs">
-                                {(sub.lugares ?? []).join(", ")}
+                                <ul className="list-disc list-inside space-y-1">
+                                  {(sub.lugares ?? []).map((lugar, i) => (
+                                    <li key={i}>{lugar}</li>
+                                  ))}
+                                </ul>
                               </div>
 
                               <div className="text-xs">
-                                {(sub.profesores ?? []).join(", ")}
+                                <ul className="list-disc list-inside space-y-1">
+                                  {(sub.profesores ?? []).map((profesor, i) => (
+                                    <li key={i}>{profesor}</li>
+                                  ))}
+                                </ul>
                               </div>
                             </div>
                           ))}

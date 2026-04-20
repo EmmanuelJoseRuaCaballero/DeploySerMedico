@@ -160,7 +160,8 @@ export default function Evaluations_estudiante() {
   const [fecha, setFecha] = React.useState<Date>();
   const [openFecha, setOpenFecha] = React.useState(false);
   */
-
+  // Modal
+  const [openModal, setOpenModal] = useState(false);
   // Borrador
   const [borradorAutoevaluacion, setBorradorAutoevaluacion] =
     React.useState<BorradorAutoevaluacion | null>(null);
@@ -468,9 +469,9 @@ export default function Evaluations_estudiante() {
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Evaluations</h1>
+            <h1 className="text-3xl font-bold text-foreground">Evaluaciones</h1>
             <p className="text-muted-foreground mt-2">
-              Review your evaluations and feedback aqui
+              Revisa tus evaluaciones y retroalimentaciones aquí
             </p>
           </div>
           <div className="flex justify-end items-center gap-2 mt-6">
@@ -482,14 +483,18 @@ export default function Evaluations_estudiante() {
               <SlidersHorizontal className="w-4 h-4" />
             </Button>
             <Dialog
+              open={openModal}
               onOpenChange={(value) => {
+                setOpenModal(value);
+
                 if (!value) {
                   limpiarFormulario();
                 }
+
                 verificar(!!verificacion);
               }}
             >
-              <DialogTrigger asChild>
+              <DialogTrigger>
                 <Button
                   className="w-full bg-primary text-primary-foreground px-5 py-2 rounded-lg hover:opacity-90"
                   disabled={!estadoEstudiante}
@@ -1083,40 +1088,46 @@ export default function Evaluations_estudiante() {
                       <DialogClose asChild>
                         <Button variant="outline">Cancelar</Button>
                       </DialogClose>
-                        <Button
-                          variant={"borrador"}
-                          type="button"
-                          onClick={handleBorrador}
-                          disabled={
-                            deshabilitar ||
-                            !seleccionado ||
-                            !lugarID ||
-                            !nivelDesempeño ||
-                            tipoActividad === null ||
-                            !profesor ||
-                            !horaInicio ||
-                            !horaFinal // ||
-                            //!fecha
-                          }
-                        >
-                          Crear Borrador
-                        </Button>
-                        <Button
-                          type="submit"
-                          disabled={
-                            deshabilitar ||
-                            !seleccionado ||
-                            !lugarID ||
-                            !nivelDesempeño ||
-                            tipoActividad === null ||
-                            !profesor ||
-                            !horaInicio ||
-                            !horaFinal // ||
-                            //!fecha
-                          }
-                        >
-                          Guardar Autoevaluacion
-                        </Button>
+                      <Button
+                        variant={"borrador"}
+                        type="button"
+                        onClick={() => {
+                          handleBorrador();
+                          setOpenModal(false);
+                        }}
+                        disabled={
+                          deshabilitar ||
+                          !seleccionado ||
+                          !lugarID ||
+                          !nivelDesempeño ||
+                          tipoActividad === null ||
+                          !profesor ||
+                          !horaInicio ||
+                          !horaFinal // ||
+                          //!fecha
+                        }
+                      >
+                        Crear Borrador
+                      </Button>
+                      <Button
+                        type="submit"
+                        onClick={() => {
+                          setOpenModal(false);
+                        }}
+                        disabled={
+                          deshabilitar ||
+                          !seleccionado ||
+                          !lugarID ||
+                          !nivelDesempeño ||
+                          tipoActividad === null ||
+                          !profesor ||
+                          !horaInicio ||
+                          !horaFinal // ||
+                          //!fecha
+                        }
+                      >
+                        Guardar Autoevaluacion
+                      </Button>
                     </DialogFooter>
                   </div>
                 </form>

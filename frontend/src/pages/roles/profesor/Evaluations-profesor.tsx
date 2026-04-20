@@ -31,8 +31,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { toastError, toastSuccess } from "@/hooks/toast-sonner";
 import { authFetch } from "@/lib/authFetch";
+import API_URL from "@/lib/config";
+import { sileo } from "sileo";
 
 interface Retroalimentacion {
   nivel_desempeño: string;
@@ -80,16 +81,17 @@ export default function Evaluations_profesor() {
   // Borrador
   const [borradorRetroalimentacion, setBorradorRetroalimentacion] =
     React.useState<BorradorRetroalimentacion[]>([]);
-  const [id_borrador_retroalimentacion, setIdBorradorRetroalimentacion] = React.useState<number>(); 
+  const [id_borrador_retroalimentacion, setIdBorradorRetroalimentacion] =
+    React.useState<number>();
 
   // Reiniciar formulario
   const limpiarFormulario = () => {
     setNivelDesempeño(undefined);
     setObservaciones("");
   };
-  
+
   // Botones
-    const [deshabilitar, SetDeshabilitar] = useState(false);
+  const [deshabilitar, SetDeshabilitar] = useState(false);
 
   // APIS
   const fetched = React.useRef(false);
@@ -101,12 +103,8 @@ export default function Evaluations_profesor() {
       try {
         const [autoevaluacionRes, borradorRetroalimentacionRes] =
           await Promise.all([
-            authFetch(
-              `http://127.0.0.1:8000/api/autoevaluacion/profesor/`,
-            ),
-            authFetch(
-              `http://127.0.0.1:8000/api/borradorretroalimentacion/`,
-            ),
+            authFetch(`${API_URL}/api/autoevaluacion/profesor/`),
+            authFetch(`${API_URL}/api/borradorretroalimentacion/`),
           ]);
 
         const autoevaluacionData = await autoevaluacionRes.json();
@@ -120,44 +118,50 @@ export default function Evaluations_profesor() {
       }
     };
     cargarDatos();
-  },);
+  });
 
   const handleSubmitRetroalimentacion = async (e: React.FormEvent) => {
     e.preventDefault();
     SetDeshabilitar(true);
     try {
-      const response = await fetch(
-        `http://127.0.0.1:8000/api/retroalimentacion/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nivel_desempeño: nivelDesempeño,
-            observaciones: observaciones,
-            autoevaluacion_id: autoevaluacionID,
-            id_borrador_retroalimentacion: id_borrador_retroalimentacion
-          }),
+      const response = await authFetch(`${API_URL}/api/retroalimentacion/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          nivel_desempeño: nivelDesempeño,
+          observaciones: observaciones,
+          autoevaluacion_id: autoevaluacionID,
+          id_borrador_retroalimentacion: id_borrador_retroalimentacion,
+        }),
+      });
 
       const data = await response.json();
       if (response.ok) {
-        toastSuccess(data.message);
+        sileo.success({
+          title: "Exitoso",
+          description: data.message,
+          duration: 5000,
+          position: "top-right",
+        });
         await new Promise((resolve) => setTimeout(resolve, 3000));
         window.location.reload();
       }
     } catch {
-      toastError("Error de conexión con el servidor");
+      sileo.error({
+        title: "Error",
+        description: "Ha ocurrido un problema conexion con el servidor",
+        duration: 3000,
+        position: "top-center",
+      });
     }
   };
 
   const handleBorrador = async (id: number) => {
-    SetDeshabilitar(true);
     try {
       const response = await authFetch(
-        `http://127.0.0.1:8000/api/borradorretroalimentacion/`,
+        `${API_URL}/api/borradorretroalimentacion/`,
         {
           method: "POST",
           headers: {
@@ -171,15 +175,31 @@ export default function Evaluations_profesor() {
         },
       );
       const data = await response.json();
-      if (response.ok) {
-        toastSuccess(data.message);
+      if (data.condition) {
+        sileo.warning({
+          title: "Advertencia",
+          description: data.message,
+          duration: 3000,
+          position: "top-right",
+        });
+      } else if (response.ok) {
+        SetDeshabilitar(true);
+        sileo.success({
+          title: "Exitoso",
+          description: data.message,
+          duration: 5000,
+          position: "top-right",
+        });
         await new Promise((resolve) => setTimeout(resolve, 3000));
         window.location.reload();
-      } else if (response.status == 400) {
-        toastError(data.error);
       }
     } catch {
-      toastError("Error de conexión con el servidor");
+      sileo.error({
+        title: "Error",
+        description: "Ha ocurrido un problema conexion con el servidor",
+        duration: 3000,
+        position: "top-center",
+      });
     }
   };
 
@@ -202,9 +222,9 @@ export default function Evaluations_profesor() {
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Evaluations</h1>
+            <h1 className="text-3xl font-bold text-foreground">Evaluaciones</h1>
             <p className="text-muted-foreground mt-2">
-              Review your evaluations and feedback aqui
+              Revisa tus evaluaciones y retroalimentaciones aquí
             </p>
           </div>
         </div>
@@ -566,9 +586,14 @@ export default function Evaluations_profesor() {
                         variant={"borrador"}
                         type="button"
                         onClick={() => {
-                          handleBorrador(autoevaluacionSeleccionada.id_autoevaluacion);
+                          handleBorrador(
+                            autoevaluacionSeleccionada.id_autoevaluacion,
+                          );
+                          setOpenModalRetroalimentacion(false);
                         }}
-                        disabled={deshabilitar || !nivelDesempeño || !observaciones}
+                        disabled={
+                          deshabilitar || !nivelDesempeño || !observaciones
+                        }
                       >
                         Crear Borrador
                       </Button>
@@ -578,8 +603,11 @@ export default function Evaluations_profesor() {
                           setAutoevaluacionID(
                             autoevaluacionSeleccionada.id_autoevaluacion,
                           );
+                          setOpenModalRetroalimentacion(false);
                         }}
-                        disabled={deshabilitar || !nivelDesempeño || !observaciones}
+                        disabled={
+                          deshabilitar || !nivelDesempeño || !observaciones
+                        }
                       >
                         Guardar Retroalimentacion
                       </Button>

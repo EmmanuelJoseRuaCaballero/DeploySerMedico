@@ -8,20 +8,21 @@ import { Toaster } from "sileo";
 // Coordinador Practicas
 
 // Profesor
-import Settings_profesor from "./pages/roles/profesor/Settings-profesor";
-import AcademicProgress_profesor from "./pages/roles/profesor/AcademicProgress-profesor";
-import Evaluations_profesor from "./pages/roles/profesor/Evaluations-profesor";
-import ClinicalPractice_profesor from "./pages/roles/profesor/ClinicalPractice-profesor";
-import Portfolio_profesor from "./pages/roles/profesor/Portfolio-profesor";
 import Dashboard_profesor from "./pages/roles/profesor/Dashboard-profesor";
+import Portfolio_profesor from "./pages/roles/profesor/Portfolio-profesor";
+import ClinicalPractice_profesor from "./pages/roles/profesor/ClinicalPractice-profesor";
+import Evaluations_profesor from "./pages/roles/profesor/Evaluations-profesor";
+import AcademicProgress_profesor from "./pages/roles/profesor/AcademicProgress-profesor";
+import Students_profesor from "./pages/roles/profesor/Students-profesor";
+import Settings_profesor from "./pages/roles/profesor/Settings-profesor";
 
 // Estudiante
-import Settings_estudiante from "./pages/roles/estudiante/Settings-estudiante";
-import AcademicProgress_estudiante from "./pages/roles/estudiante/AcademicProgress-estudiante";
-import Evaluations_estudiante from "./pages/roles/estudiante/Evaluations-estudiante";
-import ClinicalPractice_estudiante from "./pages/roles/estudiante/ClinicalPractice-estudiante";
-import Portfolio_estudiante from "./pages/roles/estudiante/Portfolio-estudiante";
 import Dashboard_estudiante from "./pages/roles/estudiante/Dashboard-estudiante"; 
+import Portfolio_estudiante from "./pages/roles/estudiante/Portfolio-estudiante";
+import ClinicalPractice_estudiante from "./pages/roles/estudiante/ClinicalPractice-estudiante";
+import Evaluations_estudiante from "./pages/roles/estudiante/Evaluations-estudiante";
+import AcademicProgress_estudiante from "./pages/roles/estudiante/AcademicProgress-estudiante";
+import Settings_estudiante from "./pages/roles/estudiante/Settings-estudiante";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ export const App = () => (
           <Route path="/profesor/clinical-practice" element={<ClinicalPractice_profesor />} />
           <Route path="/profesor/evaluations" element={<Evaluations_profesor />} />
           <Route path="/profesor/academic-progress" element={<AcademicProgress_profesor />} />
+          <Route path="/profesor/students" element={<Students_profesor />} />
           <Route path="/profesor/settings" element={<Settings_profesor />} />
 
           {/* Estudiante */}

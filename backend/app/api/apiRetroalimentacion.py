@@ -3,7 +3,9 @@ from rest_framework.response import Response # type: ignore
 from rest_framework import status # type: ignore
 
 from ..models import (
+    Autoevaluacion,
     BorradorRetroalimentacion,
+    Notificaciones,
     Retroalimentacion
 )
 
@@ -28,6 +30,16 @@ class RetroalimentacionView(APIView):
                 500: Error interno del servidor
         """
         try:
+            user = request.user
+
+            if not user.groups.filter(name="Profesor").exists():
+                return Response(
+                    {"detail": "Acceso prohibido (rol)"},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
+            profesor = user.profesor
+
             nivel_desempeño = request.data.get("nivel_desempeño")
             observaciones = request.data.get("observaciones")
             autoevaluacion_id = request.data.get("autoevaluacion_id")  
@@ -45,11 +57,33 @@ class RetroalimentacionView(APIView):
             elif nivel_desempeño == 5:
                 desempeño = "Experto"
 
-            Retroalimentacion.objects.create(
+            retroalimentacion = Retroalimentacion.objects.create(
                 nivel_desempeño=desempeño,
                 observaciones=observaciones,
                 autoevaluacion_id=autoevaluacion_id
             )
+
+            estudiante_profesor = Autoevaluacion.objects.get(
+                id=autoevaluacion_id
+            )
+
+            # Notificar al estudiante que recibió una nueva retroalimentacion.
+            if estudiante_profesor:
+                nombre_estudiante = (
+                    f"{estudiante_profesor.profesor.nombre_1} "
+                    f"{estudiante_profesor.profesor.nombre_2} "
+                    f"{estudiante_profesor.profesor.apellido_1} "
+                    f"{estudiante_profesor.profesor.apellido_2} "
+                ).strip()
+                Notificaciones.objects.create(
+                    user=estudiante_profesor.estudiante.user,
+                    titulo="Nueva retroalimentación recibida",
+                    mensaje=(
+                        f"{nombre_estudiante} registró una retroalimentación "
+                        f"el {retroalimentacion.fecha}."
+                    ),
+                    tipo="info"
+                )
 
             # Eliminar el borrador, si existe
             if id_borrador_retroalimentacion:

@@ -7,6 +7,7 @@ from datetime import datetime
 from ..models import (
     Autoevaluacion,
     BorradorAutoevaluacion,
+    Notificaciones,
     OpcionProcedimientos,
     ProcedimientoAutoevaluacion,
     Profesor,
@@ -104,6 +105,24 @@ class AutoevaluacionEstudianteView(APIView):
                 autoevaluacion=autoevaluacion,
                 procedimientos_id=procedimientos_id
             )
+
+            # Notificar al profesor que recibió una nueva autoevaluación.
+            if profesor:
+                nombre_estudiante = (
+                    f"{autoevaluacion.estudiante.nombre_1} "
+                    f"{autoevaluacion.estudiante.nombre_2} "
+                    f"{autoevaluacion.estudiante.apellido_1} "
+                    f"{autoevaluacion.estudiante.apellido_2} "
+                ).strip()
+                Notificaciones.objects.create(
+                    user=profesor.user,
+                    titulo="Nueva autoevaluación recibida",
+                    mensaje=(
+                        f"{nombre_estudiante} registró una autoevaluación "
+                        f"el {autoevaluacion.fecha}."
+                    ),
+                    tipo="info"
+                )
 
             # Eliminar el borrador, si existe
             if id_borrador_autoevaluacion:

@@ -144,10 +144,10 @@ export default function Dashboard_estudiante() {
         {/* Page Header */}
         <div>
           <h1 className="text-3xl font-bold text-foreground">
-            Welcome to Dashboard
+            Bienvenido
           </h1>
           <p className="text-muted-foreground mt-2">
-            Manage your medical portfolio and academic progress
+            Gestiona tu portafolio médico y tu progreso académico
           </p>
         </div>
 
@@ -236,7 +236,7 @@ export default function Dashboard_estudiante() {
           {/* HEADER */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-foreground">
-              Recent Activity
+              Actividad reciente
             </h2>
           </div>
 
