@@ -8,11 +8,11 @@ from app.api.apiLugar import LugarView
 from app.api.apiProfesor import ProfesorView, ValidacionProfesorView
 from app.api.apiEstudiante import EstudianteView, ValidacionEstudianteView
 from app.api.apiAutoevaluacion import AutoevaluacionEstudianteView, AutoevaluacionProfesorView, UltimasAutoevaluacionesEstudianteView
-from app.api.apiRetroalimentacion import RetroalimentacionView
+from app.api.apiRetroalimentacion import RetroalimentacionView, UltimasRetroalimentacionesProfesorView
 from app.api.apiBorradorAutoevaluacion import BorradorAutoevaluacionView
 from app.api.apiBorradorRetroalimentacion import BorradorRetroalimentacionView
-from app.api.apiEstadisticasProcedimientos import TablaProcedimientosEstudianteView, TablaProcedimientosProfesorView, EstadisticasProcedimientosEstudiantesView
-from app.api.apiCurvaAprendizaje import CurvaAprendizajeView
+from app.api.apiEstadisticasProcedimientos import EstadisticasProcedimientosProfesorView, TablaProcedimientosEstudianteView, TablaProcedimientosProfesorView, EstadisticasProcedimientosEstudiantesView
+from app.api.apiCurvaAprendizaje import CurvaAprendizajeEstudianteView, CurvaAprendizajeProfesorView
 from app.api.apiFotoPerfil import FotoPerfilView
 from app.api.apiNotificaciones import NotificacionIndividualEstudianteView, NotificacionIndividualProfesorView, NotificacionesTodasEstudianteView, NotificacionesTodasProfesorView
 
@@ -38,6 +38,7 @@ urlpatterns = [
     path("api/ultimasautoevaluaciones/estudiante/", UltimasAutoevaluacionesEstudianteView.as_view(), name="ultimasautoevaluaciones"),
     # Retroalimentacion
     path("api/retroalimentacion/", RetroalimentacionView.as_view(), name="retroalimentacion"),
+    path("api/ultimasretroalimentaciones/profesor/", UltimasRetroalimentacionesProfesorView.as_view(), name="ultimasretroalimentaciones"),
     # BorradorAutoevaluacion
     path("api/borradorautoevaluacion/", BorradorAutoevaluacionView.as_view(), name="borradorautoevaluacion"),
     # BorradorRetroalimentacion
@@ -45,9 +46,11 @@ urlpatterns = [
     # Estadisticas Procediminentos
     path("api/tablaprocedimientos/estudiante/", TablaProcedimientosEstudianteView.as_view(), name="tablaprocedimientos"),
     path("api/tablaprocedimientos/profesor/", TablaProcedimientosProfesorView.as_view(), name="tablaprocedimientos"),
-    path("api/estadisticasprocedimientos/estudiante/", EstadisticasProcedimientosEstudiantesView.as_view(), name="estadisticasprocedimientos"),
+    path("api/estadisticasprocedimientos/estudiante/", EstadisticasProcedimientosEstudiantesView.as_view(), name="estadisticasprocedimientos_estudiante"),
+    path("api/estadisticasprocedimientos/profesor/", EstadisticasProcedimientosProfesorView.as_view(), name="estadisticasprocedimientos_profesor"),
     # Curva Aprendizaje
-    path("api/curvaaprendizaje/", CurvaAprendizajeView.as_view(), name="curvaaprendizaje"),
+    path("api/curvaaprendizaje/estudiante/", CurvaAprendizajeEstudianteView.as_view(), name="curvaaprendizaje_estudiante"),
+    path("api/curvaaprendizaje/profesor/", CurvaAprendizajeProfesorView.as_view(), name="curvaaprendizaje_profesor"),
     # Foto Perfil
     path("api/fotoperfil/", FotoPerfilView.as_view(), name="foto_perfil"),
     # Notificaciones

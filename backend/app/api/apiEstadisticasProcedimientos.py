@@ -385,3 +385,59 @@ class TablaProcedimientosProfesorView(APIView):
             return Response(
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+        
+class EstadisticasProcedimientosProfesorView(APIView):
+    """
+    API Estadisticas Procedimientos
+    """
+    def get(self, request):
+        """
+        Retorna las estadisticas de los procedimientos
+        """       
+        user = request.user
+
+        if not user.groups.filter(name="Profesor").exists():
+            return Response(
+                {"detail": "Acceso prohibido (rol)"},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        profesor = user.profesor
+
+        data = []
+
+        list_auto = Autoevaluacion.objects.filter(
+            profesor_id=profesor
+        )
+
+        data_dict = {}
+        total_real = 0
+        total_simulada = 0
+
+        for auto in list_auto:
+            anio = auto.fecha.year
+
+            if anio not in data_dict:
+                data_dict[anio] = {
+                    "year": anio,
+                    "real": 0,
+                    "simulado": 0
+                }
+
+            if auto.actividad_real == 1:
+                data_dict[anio]["real"] += 1
+                total_real += 1
+            elif auto.actividad_simulada == 1:
+                data_dict[anio]["simulado"] += 1
+                total_simulada += 1
+
+        data = sorted(data_dict.values(), key=lambda x: x["year"])
+
+        return Response({
+            "year": data,
+            "totales": {
+                "real": total_real,
+                "simulado": total_simulada
+            }},
+            status=status.HTTP_200_OK
+        )

@@ -494,7 +494,7 @@ export default function Evaluations_estudiante() {
                 verificar(!!verificacion);
               }}
             >
-              <DialogTrigger>
+              <DialogTrigger asChild disabled={!estadoEstudiante}>
                 <Button
                   className="w-full bg-primary text-primary-foreground px-5 py-2 rounded-lg hover:opacity-90"
                   disabled={!estadoEstudiante}

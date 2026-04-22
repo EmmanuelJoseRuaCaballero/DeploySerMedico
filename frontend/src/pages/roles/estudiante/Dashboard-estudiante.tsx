@@ -270,7 +270,7 @@ export default function Dashboard_estudiante() {
 
                   <CardContent className="pt-0">
                     <p className="text-xs text-muted-foreground">Profesor:</p>
-                    <p className="text-sm font-medium text-foreground truncate">
+                    <p className="text-sm font-medium text-foreground">
                       {item.nombre_profesor}
                     </p>
                   </CardContent>

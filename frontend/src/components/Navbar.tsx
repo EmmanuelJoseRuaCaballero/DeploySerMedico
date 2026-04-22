@@ -97,9 +97,9 @@ export function Navbar({ onMenuClick }: NavbarProps) {
       </div>
 
       {/* Right Section */}
-      <div className="ml-auto flex items-center gap-4 md:gap-6">
+      <div className="ml-auto flex items-center gap-2 md:gap-6">
         {/* User Profile */}
-        <div className="flex items-center gap-3 md:gap-4">
+        <div className="flex items-center gap-3 md:gap-4 ml-2 md:ml-4">
           {/* Profile Image */}
           <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
             {fotoUrl ? (

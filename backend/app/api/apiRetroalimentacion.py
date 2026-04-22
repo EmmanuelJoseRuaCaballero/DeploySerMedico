@@ -6,6 +6,7 @@ from ..models import (
     Autoevaluacion,
     BorradorRetroalimentacion,
     Notificaciones,
+    ProcedimientoAutoevaluacion,
     Retroalimentacion
 )
 
@@ -95,6 +96,47 @@ class RetroalimentacionView(APIView):
                 {"message": "Retroalimetacion Enviada"},
                 status=status.HTTP_201_CREATED
             )
+        except Exception as e:
+            print("error", str(e))
+            return Response(
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+class UltimasRetroalimentacionesProfesorView(APIView):
+    def get(self, request):
+        try:
+            user = request.user
+
+            if not user.groups.filter(name="Profesor").exists():
+                return Response(
+                    {"detail": "Acceso prohibido (rol)"},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
+            profesor = user.profesor
+
+            data = []
+
+            queryset = ProcedimientoAutoevaluacion.objects.filter(
+                autoevaluacion__profesor_id=profesor.id,
+                autoevaluacion__retroalimentacion__isnull=False
+            ).select_related(
+                'autoevaluacion',
+                'autoevaluacion__estudiante',
+                'autoevaluacion__retroalimentacion',
+                'procedimientos'
+            ).order_by('-autoevaluacion__id')[:3]
+
+            for item in queryset:
+
+                data.append({
+                    "id_retroalimentacion": item.autoevaluacion.retroalimentacion.id,
+                    "fecha": item.autoevaluacion.fecha,
+                    "nombre_estudiante": f"{item.autoevaluacion.estudiante.nombre_1} {item.autoevaluacion.estudiante.nombre_2} {item.autoevaluacion.estudiante.apellido_1} {item.autoevaluacion.estudiante.apellido_2}",
+                    "nombre_procedimiento": item.procedimientos.nombre_p
+                })
+
+            return Response(data, status=status.HTTP_200_OK)
         except Exception as e:
             print("error", str(e))
             return Response(

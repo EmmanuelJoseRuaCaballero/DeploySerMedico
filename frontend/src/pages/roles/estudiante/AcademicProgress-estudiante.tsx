@@ -55,11 +55,9 @@ interface Procedimientos {
 }
 
 interface CurvaAprendizaje {
-  id_autoevaluacion: number;
   codigo_procedimiento: number;
   nivel_desempeño_estudiante: string;
   fecha: string;
-  nombre_profesor: string;
   nivel_desempeño_profesor: string;
 }
 
@@ -91,7 +89,7 @@ export default function AcademicProgress_estudiante() {
       try {
         const [procedimientosRes, curvaAprendizajeRes] = await Promise.all([
           fetch(`${API_URL}/api/procedimientos/`),
-          authFetch(`${API_URL}/api/curvaaprendizaje/`),
+          authFetch(`${API_URL}/api/curvaaprendizaje/estudiante/`),
         ]);
 
         const procedimientoData = await procedimientosRes.json();
