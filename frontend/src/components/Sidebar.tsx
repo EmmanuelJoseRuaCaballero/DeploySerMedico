@@ -22,13 +22,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const ROLE = localStorage.getItem("rol");
 
   const allNavItems = [
-    { label: "Dashboard", href: `${BASE_ROUTE}/dashboard`, icon: LayoutDashboard, roles: ["Estudiante", "Profesor"]},
+    { label: "Dashboard", href: `${BASE_ROUTE}/dashboard`, icon: LayoutDashboard, roles: ["Estudiante", "Profesor", "CoordinadorCurso"]},
     { label: "My Portfolio", href: `${BASE_ROUTE}/portfolio`, icon: BookOpen, roles: [] },
     { label: "Práctica clínica", href: `${BASE_ROUTE}/clinical-practice`, icon: Stethoscope, roles: ["Estudiante", "Profesor"] },
     { label: "Evaluaciones", href: `${BASE_ROUTE}/evaluations`, icon: ClipboardList, roles: ["Estudiante", "Profesor"] },
     { label: "Progreso académico", href: `${BASE_ROUTE}/academic-progress`, icon: TrendingUp, roles: ["Estudiante", "Profesor"] },
-    { label: "Estudiantes", href: `${BASE_ROUTE}/students`, icon: Users, roles: ["Profesor"] },
-    { label: "Configuración", href: `${BASE_ROUTE}/settings`, icon: Settings, roles: ["Estudiante", "Profesor"] },
+    { label: "Estudiantes", href: `${BASE_ROUTE}/students`, icon: Users, roles: ["Profesor", "CoordinadorCurso"] },
+    { label: "Configuración", href: `${BASE_ROUTE}/settings`, icon: Settings, roles: ["Estudiante", "Profesor", "CoordinadorCurso"] },
   ];
 
   const navItems = allNavItems.filter(item =>

@@ -25,7 +25,7 @@ export default function Index() {
         });
         return;
       }
-      
+
       localStorage.setItem("rol", data.rol);
       localStorage.setItem("nombre", data.nombre);
 
@@ -35,14 +35,17 @@ export default function Index() {
       } else if (data.rol === "Estudiante") {
         localStorage.setItem("ruta", "/estudiante");
         navigate("/estudiante/dashboard");
+      } else if (data.rol === "CoordinadorCurso") {
+        localStorage.setItem("ruta", "/coordinador-curso");
+        navigate("/coordinador-curso/dashboard");
       }
     } catch {
       sileo.error({
-          title: "Error en el perfil",
-          duration: 3000,
-          position: "top-center",
-        });
-        return;
+        title: "Error en el perfil",
+        duration: 3000,
+        position: "top-center",
+      });
+      return;
     }
   };
 
@@ -140,10 +143,10 @@ export default function Index() {
             {/* Header */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-medical-blue mb-2">
-                e-Portafolio Ser Médico
+                e-Portafolio SerMédico
               </h1>
-              <p className="text-medical-gray text-sm font-medium">
-                Facultad de Medicina – Universidad Simón Bolívar
+              <p className="text-medical-gray text-sm text-center font-medium">
+                Facultad de Medicina –<span className="italic">UniSimón</span>
               </p>
             </div>
 

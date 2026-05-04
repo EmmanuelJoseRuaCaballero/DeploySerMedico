@@ -7,6 +7,11 @@ import { Toaster } from "sileo";
 
 // Coordinador Practicas
 
+// Coordinador Curso
+import Dashboard_coordinadorCurso from "./pages/roles/coordinador_curso/Dashboard-coordinador-curso";
+import Settings_coordinadorCurso from "./pages/roles/coordinador_curso/Settings-coordinador-curso";
+import Students_coordinadorCurso from "./pages/roles/coordinador_curso/Students-coordinador-curso";
+
 // Profesor
 import Dashboard_profesor from "./pages/roles/profesor/Dashboard-profesor";
 import Portfolio_profesor from "./pages/roles/profesor/Portfolio-profesor";
@@ -51,6 +56,10 @@ export const App = () => (
           <Route path="/coord-prac/settings" element={<Settings />} />*/}
 
           {/* Coordinador Curso */}
+          <Route path="/coordinador-curso/dashboard" element={<Dashboard_coordinadorCurso />} />
+          <Route path="/coordinador-curso/students" element={<Students_coordinadorCurso />} />
+          <Route path="/coordinador-curso/settings" element={<Settings_coordinadorCurso />} />
+
           {/* Profesor */}
           <Route path="/profesor/dashboard" element={<Dashboard_profesor />} />
           <Route path="/profesor/portfolio" element={<Portfolio_profesor />} />

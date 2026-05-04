@@ -150,7 +150,7 @@ class BorradorAutoevaluacionView(APIView):
                     "verificacion": True,
                     "id_borrador_autoevaluacion": borrador_autoevaluacion.id,
                     "nombre_procedimiento": borrador_autoevaluacion.nombre_procedimiento,
-                    "procedimiento": borrador_autoevaluacion.procedimiento,
+                    "sop_op_procedimiento": borrador_autoevaluacion.sop_op_procedimiento,
                     "id_procedimientos": borrador_autoevaluacion.id_procedimientos,
                     "id_lugar": borrador_autoevaluacion.id_lugar,
                     "nivel_desempeño": borrador_autoevaluacion.nivel_desempeño,

@@ -77,7 +77,7 @@ class TablaProcedimientosEstudianteView(APIView):
 
             for a in autos:
 
-                proc_id = a.procedimiento
+                proc_id = a.sop_op_procedimiento
 
                 real = 1 if a.autoevaluacion.actividad_real else 0
                 simulada = 1 if a.autoevaluacion.actividad_simulada else 0
@@ -201,22 +201,32 @@ class EstadisticasProcedimientosEstudiantesView(APIView):
 
         for auto in list_auto:
             anio = auto.fecha.year
+            mes = auto.fecha.month
 
-            if anio not in data_dict:
-                data_dict[anio] = {
+            periodo = 1 if mes <= 6 else 2
+
+            clave = f"{anio}-{periodo}"
+
+            if clave not in data_dict:
+                data_dict[clave] = {
+                    "periodo": clave,
                     "year": anio,
+                    "periodo_num": periodo,
                     "real": 0,
                     "simulado": 0
                 }
 
             if auto.actividad_real == 1:
-                data_dict[anio]["real"] += 1
+                data_dict[clave]["real"] += 1
                 total_real += 1
             elif auto.actividad_simulada == 1:
-                data_dict[anio]["simulado"] += 1
+                data_dict[clave]["simulado"] += 1
                 total_simulada += 1
 
-        data = sorted(data_dict.values(), key=lambda x: x["year"])
+        data = sorted(
+            data_dict.values(),
+            key=lambda x: (x["year"], x["periodo_num"])
+        )
 
         return Response({
             "year": data,
@@ -292,7 +302,7 @@ class TablaProcedimientosProfesorView(APIView):
 
             for a in autos:
 
-                proc_id = a.procedimiento
+                proc_id = a.sop_op_procedimiento
 
                 real = 1 if a.autoevaluacion.actividad_real else 0
                 simulada = 1 if a.autoevaluacion.actividad_simulada else 0
@@ -416,22 +426,32 @@ class EstadisticasProcedimientosProfesorView(APIView):
 
         for auto in list_auto:
             anio = auto.fecha.year
+            mes = auto.fecha.month
 
-            if anio not in data_dict:
-                data_dict[anio] = {
+            periodo = 1 if mes <= 6 else 2
+
+            clave = f"{anio}-{periodo}"
+
+            if clave not in data_dict:
+                data_dict[clave] = {
+                    "periodo": clave,
                     "year": anio,
+                    "periodo_num": periodo,
                     "real": 0,
                     "simulado": 0
                 }
 
             if auto.actividad_real == 1:
-                data_dict[anio]["real"] += 1
+                data_dict[clave]["real"] += 1
                 total_real += 1
             elif auto.actividad_simulada == 1:
-                data_dict[anio]["simulado"] += 1
+                data_dict[clave]["simulado"] += 1
                 total_simulada += 1
 
-        data = sorted(data_dict.values(), key=lambda x: x["year"])
+        data = sorted(
+            data_dict.values(),
+            key=lambda x: (x["year"], x["periodo_num"])
+        )
 
         return Response({
             "year": data,

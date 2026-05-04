@@ -7,17 +7,30 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ["id", "username"]
 
+class CoordinadorCursoSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Profesor
+        fields = ["id", "user", "cedula_coord_curso", "nombre_1", "nombre_2", 
+                  "apellido_1", "apellido_2", "curso"]
+
 class ProfesorSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
 
     class Meta:
         model = Profesor
         fields = ["id", "user", "cedula_profesor", "nombre_1", "nombre_2", 
-                  "apellido_1", "apellido_2",]
+                  "apellido_1", "apellido_2", "estado", "curso"]
 
 class BorradorAutoevaluacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = BorradorAutoevaluacion
+        fields = "__all__"
+
+class CohorteIngreso(serializers.ModelSerializer):
+    class Meta:
+        model = CohorteIngreso
         fields = "__all__"
 
 class EstudianteSerializer(serializers.ModelSerializer):

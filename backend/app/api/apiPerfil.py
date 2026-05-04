@@ -23,3 +23,11 @@ class PerfilView(APIView):
                 "nombre": f"{perfil.nombre_1} {perfil.nombre_2} {perfil.apellido_1} {perfil.apellido_2}",
                 "rol": "Profesor"
             })
+        
+        elif user.groups.filter(name="CoordinadorCurso").exists():
+            perfil = user.coordinadorcurso
+            return Response({
+                "cedula": perfil.cedula_coord_curso,
+                "nombre": f"{perfil.nombre_1} {perfil.nombre_2} {perfil.apellido_1} {perfil.apellido_2}",
+                "rol": "CoordinadorCurso"
+            })

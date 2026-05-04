@@ -21,7 +21,7 @@ import {
 } from "recharts";
 
 interface BarData {
-  year: string;
+  periodo: string;
   real: number;
   simulado: number;
 }
@@ -33,7 +33,7 @@ interface PieData {
 }
 
 interface EstadisticaYear {
-  year: number;
+  periodo: string;
   real: number;
   simulado: number;
 }
@@ -74,7 +74,7 @@ export default function Dashboard_profesor() {
 
         const dataTransformada = estadisticasProcedimientoData.year.map(
           (item: EstadisticaYear) => ({
-            year: item.year.toString(),
+            periodo: item.periodo,
             real: item.real,
             simulado: item.simulado,
           }),
@@ -194,7 +194,7 @@ export default function Dashboard_profesor() {
                   >
                     <CartesianGrid strokeDasharray="3 3" />
 
-                    <XAxis dataKey="year" />
+                    <XAxis dataKey="periodo" />
                     <YAxis />
 
                     <Tooltip

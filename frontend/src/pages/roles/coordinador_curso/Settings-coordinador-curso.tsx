@@ -6,7 +6,7 @@ import { authFetch } from "@/lib/authFetch";
 import API_URL from "@/lib/config";
 import { sileo } from "sileo";
 
-export default function Settings_profesor() {
+export default function Settings_coordinadorCurso() {
   const [nombre, setNombre] = useState<string>("");
   const [cedula, setCedula] = useState<number | string>(0);
 

@@ -2,6 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+class CoordinadorCurso(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    cedula_coord_curso = models.IntegerField(unique=True)
+    nombre_1 = models.CharField(max_length=100)
+    nombre_2 = models.CharField(max_length=100, null=True, blank=True)
+    apellido_1 = models.CharField(max_length=100)
+    apellido_2 = models.CharField(max_length=100, null=True, blank=True)
+
+    curso = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.nombre_1} {self.apellido_1}"
     
 class Profesor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -15,11 +28,26 @@ class Profesor(models.Model):
     estado = models.BooleanField(default=True)
     curso = models.CharField(max_length=100)
 
+    coordinadorcurso = models.ForeignKey(
+        CoordinadorCurso,
+        on_delete=models.CASCADE
+    )
+
     def __str__(self):
         return f"{self.nombre_1} {self.apellido_1}"
 
+class CohorteIngreso(models.Model):
+    anio = models.IntegerField()
+    periodo = models.IntegerField()
+
+    class Meta:
+        unique_together = ("anio", "periodo")
+
+    def __str__(self):
+        return f"{self.anio}-{self.periodo}"
+
 class Estudiante(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name="estudiante")
 
     cedula_estudiante = models.IntegerField(unique=True)
     nombre_1 = models.CharField(max_length=100)
@@ -30,12 +58,16 @@ class Estudiante(models.Model):
     semestre = models.IntegerField()
     estado = models.BooleanField(default=False)
 
+    cohorte = models.ForeignKey(CohorteIngreso, on_delete=models.PROTECT, null=False, blank=False)
+
+    cargado_por = models.ForeignKey(User, on_delete=models.PROTECT, null=False, blank=False, related_name="estudiantes_cargados")
+
     def __str__(self):
         return f"{self.nombre_1} {self.apellido_1}"
     
 class BorradorAutoevaluacion(models.Model):
     nombre_procedimiento = models.CharField(max_length=255)
-    procedimiento = models.IntegerField()
+    sop_op_procedimiento = models.IntegerField()
     id_procedimientos  = models.IntegerField()
     id_lugar = models.IntegerField()
     nivel_desempeño = models.IntegerField()
@@ -109,7 +141,7 @@ class BorradorRetroalimentacion(models.Model):
     )
 
 class ProcedimientoAutoevaluacion(models.Model):
-    procedimiento = models.IntegerField()
+    sop_op_procedimiento = models.IntegerField()
 
     autoevaluacion = models.ForeignKey(Autoevaluacion, on_delete=models.CASCADE)
     procedimientos = models.ForeignKey(Procedimientos, on_delete=models.CASCADE)

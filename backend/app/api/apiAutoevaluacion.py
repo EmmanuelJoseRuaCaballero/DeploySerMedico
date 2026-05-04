@@ -59,7 +59,7 @@ class AutoevaluacionEstudianteView(APIView):
             #fecha = request.data.get("fecha")
             lugar_id = request.data.get("lugar_id")
             cedula_profesor = request.data.get("cedula_profesor")
-            procedimiento = request.data.get("procedimiento")
+            sop_op_procedimiento = request.data.get("sop_op_procedimiento")
             procedimientos_id = request.data.get("procedimientos_id")
             id_borrador_autoevaluacion = request.data.get("id_borrador_autoevaluacion")
 
@@ -101,7 +101,7 @@ class AutoevaluacionEstudianteView(APIView):
                     estudiante_id=estudiante.id,
                 )
             ProcedimientoAutoevaluacion.objects.create(
-                procedimiento=procedimiento,
+                sop_op_procedimiento=sop_op_procedimiento,
                 autoevaluacion=autoevaluacion,
                 procedimientos_id=procedimientos_id
             )
@@ -187,18 +187,18 @@ class AutoevaluacionEstudianteView(APIView):
                 )          
                 for pa in lista_pa:
                     if SubOpcionProcedimientos.objects.filter(
-                        id_sub_opcion_procedimientos=pa.procedimiento
+                        id_sub_opcion_procedimientos=pa.sop_op_procedimiento
                     ).exists():
                         sop = SubOpcionProcedimientos.objects.get(
-                            id_sub_opcion_procedimientos=pa.procedimiento
+                            id_sub_opcion_procedimientos=pa.sop_op_procedimiento
                         )
                         nombre_procedimiento = f"{sop.id_opcion_procedimientos.id_procedimientos.nombre_p} - {sop.id_opcion_procedimientos.nombre_op} - {sop.nombre_sop}"
 
                     elif OpcionProcedimientos.objects.filter(
-                        id_opcion_procedimientos=pa.procedimiento
+                        id_opcion_procedimientos=pa.sop_op_procedimiento
                     ).exists():
                         op = OpcionProcedimientos.objects.get(
-                            id_opcion_procedimientos=pa.procedimiento
+                            id_opcion_procedimientos=pa.sop_op_procedimiento
                         )
                         nombre_procedimiento = f"{op.id_procedimientos.nombre_p} - {op.nombre_op}"
 
@@ -327,18 +327,18 @@ class AutoevaluacionProfesorView(APIView):
                 )          
                 for pa in lista_pa:
                     if SubOpcionProcedimientos.objects.filter(
-                        id_sub_opcion_procedimientos=pa.procedimiento
+                        id_sub_opcion_procedimientos=pa.sop_op_procedimiento
                     ).exists():
                         sop = SubOpcionProcedimientos.objects.get(
-                            id_sub_opcion_procedimientos=pa.procedimiento
+                            id_sub_opcion_procedimientos=pa.sop_op_procedimiento
                         )
                         nombre_procedimiento = f"{sop.id_opcion_procedimientos.id_procedimientos.nombre_p} - {sop.id_opcion_procedimientos.nombre_op} - {sop.nombre_sop}"
 
                     elif OpcionProcedimientos.objects.filter(
-                        id_opcion_procedimientos=pa.procedimiento
+                        id_opcion_procedimientos=pa.sop_op_procedimiento
                     ).exists():
                         op = OpcionProcedimientos.objects.get(
-                            id_opcion_procedimientos=pa.procedimiento
+                            id_opcion_procedimientos=pa.sop_op_procedimiento
                         )
                         nombre_procedimiento = f"{op.id_procedimientos.nombre_p} - {op.nombre_op}"
 

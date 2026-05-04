@@ -112,7 +112,7 @@ interface BorradorAutoevaluacion {
   verificacion: boolean;
   id_borrador_autoevaluacion: number;
   nombre_procedimiento: string;
-  procedimiento: number;
+  sop_op_procedimiento: number;
   id_procedimientos: number;
   id_lugar: number;
   nivel_desempeño: number;
@@ -136,7 +136,7 @@ export default function Evaluations_estudiante() {
   const [seleccionado, setSeleccionado] = React.useState<string>(
     "Seleccionar procedimiento",
   );
-  const [procedimiento, setProcedimiento] = React.useState<number>();
+  const [sop_op_procedimiento, setSop_op_procedimiento] = React.useState<number>();
   const [procedimientoID, setProcedimientoID] = React.useState<number>();
   // Lugar
   const [lugares, setLugares] = React.useState<Lugar[]>([]);
@@ -172,7 +172,7 @@ export default function Evaluations_estudiante() {
   // Reiniciar formulario
   const limpiarFormulario = () => {
     setSeleccionado("Seleccionar procedimiento");
-    setProcedimiento(undefined);
+    setSop_op_procedimiento(undefined);
     setProcedimientoID(undefined);
     setLugarID(undefined);
     setNivelDesempeño(undefined);
@@ -325,7 +325,7 @@ export default function Evaluations_estudiante() {
             //fecha: formatDate(fecha),
             lugar_id: lugarID,
             cedula_profesor: Number(profesor),
-            procedimiento,
+            sop_op_procedimiento,
             procedimientos_id: procedimientoID,
             id_borrador_autoevaluacion:
               borradorAutoevaluacion?.id_borrador_autoevaluacion,
@@ -367,7 +367,7 @@ export default function Evaluations_estudiante() {
           },
           body: JSON.stringify({
             nombre_procedimiento: seleccionado,
-            procedimiento,
+            sop_op_procedimiento,
             id_procedimientos: procedimientoID,
             id_lugar: lugarID,
             nivel_desempeño: nivelDesempeño,
@@ -413,7 +413,7 @@ export default function Evaluations_estudiante() {
   const verificar = (valor: boolean) => {
     if (valor && borradorAutoevaluacion) {
       setSeleccionado(borradorAutoevaluacion.nombre_procedimiento.toString());
-      setProcedimiento(borradorAutoevaluacion.procedimiento);
+      setSop_op_procedimiento(borradorAutoevaluacion.sop_op_procedimiento);
       setProcedimientoID(borradorAutoevaluacion.id_procedimientos);
       setLugarID(borradorAutoevaluacion.id_lugar);
       setNivelDesempeño(borradorAutoevaluacion.nivel_desempeño);
@@ -563,7 +563,7 @@ export default function Evaluations_estudiante() {
                                                   `${procedimiento.nombre_p} - ${opcion.nombre_op}`,
                                                 );
 
-                                                setProcedimiento(
+                                                setSop_op_procedimiento(
                                                   opcion.id_opcion_procedimientos,
                                                 );
                                                 setProcedimientoID(
@@ -599,7 +599,7 @@ export default function Evaluations_estudiante() {
                                                         `${procedimiento.nombre_p} - ${opcion.nombre_op} - ${sub.nombre_sop}`,
                                                       );
 
-                                                      setProcedimiento(
+                                                      setSop_op_procedimiento(
                                                         sub.id_sub_opcion_procedimientos,
                                                       );
                                                       setProcedimientoID(
@@ -671,7 +671,7 @@ export default function Evaluations_estudiante() {
                                               setSeleccionado(
                                                 `${procedimiento.nombre_p} - ${opcion.nombre_op}`,
                                               );
-                                              setProcedimiento(
+                                              setSop_op_procedimiento(
                                                 opcion.id_opcion_procedimientos,
                                               );
                                               setProcedimientoID(
@@ -708,7 +708,7 @@ export default function Evaluations_estudiante() {
                                                     setSeleccionado(
                                                       `${procedimiento.nombre_p} - ${opcion.nombre_op} - ${sub.nombre_sop}`,
                                                     );
-                                                    setProcedimiento(
+                                                    setSop_op_procedimiento(
                                                       sub.id_sub_opcion_procedimientos,
                                                     );
                                                     setProcedimientoID(

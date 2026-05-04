@@ -47,18 +47,18 @@ class CurvaAprendizajeEstudianteView(APIView):
                 )          
                 for pa in lista_pa:
                     if SubOpcionProcedimientos.objects.filter(
-                        id_sub_opcion_procedimientos=pa.procedimiento
+                        id_sub_opcion_procedimientos=pa.sop_op_procedimiento
                     ).exists():
                         sop = SubOpcionProcedimientos.objects.get(
-                            id_sub_opcion_procedimientos=pa.procedimiento
+                            id_sub_opcion_procedimientos=pa.sop_op_procedimiento
                         )
                         codigo_procedimiento = sop.id_sub_opcion_procedimientos
 
                     elif OpcionProcedimientos.objects.filter(
-                        id_opcion_procedimientos=pa.procedimiento
+                        id_opcion_procedimientos=pa.sop_op_procedimiento
                     ).exists():
                         op = OpcionProcedimientos.objects.get(
-                            id_opcion_procedimientos=pa.procedimiento
+                            id_opcion_procedimientos=pa.sop_op_procedimiento
                         )
                         codigo_procedimiento = op.id_opcion_procedimientos
 
@@ -113,18 +113,18 @@ class CurvaAprendizajeProfesorView(APIView):
                 )          
                 for pa in lista_pa:
                     if SubOpcionProcedimientos.objects.filter(
-                        id_sub_opcion_procedimientos=pa.procedimiento
+                        id_sub_opcion_procedimientos=pa.sop_op_procedimiento
                     ).exists():
                         sop = SubOpcionProcedimientos.objects.get(
-                            id_sub_opcion_procedimientos=pa.procedimiento
+                            id_sub_opcion_procedimientos=pa.sop_op_procedimiento
                         )
                         codigo_procedimiento = sop.id_sub_opcion_procedimientos
 
                     elif OpcionProcedimientos.objects.filter(
-                        id_opcion_procedimientos=pa.procedimiento
+                        id_opcion_procedimientos=pa.sop_op_procedimiento
                     ).exists():
                         op = OpcionProcedimientos.objects.get(
-                            id_opcion_procedimientos=pa.procedimiento
+                            id_opcion_procedimientos=pa.sop_op_procedimiento
                         )
                         codigo_procedimiento = op.id_opcion_procedimientos
 

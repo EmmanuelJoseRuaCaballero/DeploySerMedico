@@ -7,7 +7,6 @@ from ..models import (
 ) 
 
 class EstudianteView(APIView):
-    # Utilizar token
     """
     API Estudiante
     """
@@ -34,7 +33,7 @@ class EstudianteView(APIView):
                         f"{estudiante.apellido_2} "
                     ),
                     "semestre": estudiante.semestre,
-                    "estado": estudiante.estado
+                    "estado": estudiante.estado,
                 })
 
             return Response(
@@ -93,7 +92,6 @@ class EstudianteView(APIView):
                 {"error": "Error interno del servidor"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
 
 class ValidacionEstudianteView(APIView):
     """

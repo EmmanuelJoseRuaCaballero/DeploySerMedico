@@ -23,7 +23,7 @@ interface Usuario {
   estado: boolean;
 }
 
-export default function Settings_profesor() {
+export default function Students_profesor() {
   const [estudiantes, setEstudiantes] = useState<Usuario[]>([]);
   const [estadoProfesor, setEstadoProfesor] = React.useState<boolean>();
   const [search, setSearch] = useState("");

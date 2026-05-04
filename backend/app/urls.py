@@ -5,6 +5,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from app.api.apiPerfil import PerfilView
 from app.api.apiProcedimientos import ProcedimientosView
 from app.api.apiLugar import LugarView
+from app.api.apiCoordinadorCurso import CargarEstudiantes
 from app.api.apiProfesor import ProfesorView, ValidacionProfesorView
 from app.api.apiEstudiante import EstudianteView, ValidacionEstudianteView
 from app.api.apiAutoevaluacion import AutoevaluacionEstudianteView, AutoevaluacionProfesorView, UltimasAutoevaluacionesEstudianteView
@@ -26,6 +27,8 @@ urlpatterns = [
     path("api/procedimientos/", ProcedimientosView.as_view(), name="procedimientos"),
     # Lugar
     path("api/lugar/", LugarView.as_view(), name="lugar"),
+    # Coordinador Cursos
+    path("api/cargarestudiantes/coordinadorcurso/", CargarEstudiantes.as_view(), name="cargarestudiantes_coordinadorcurso"),
     # Profesor
     path("api/profesor/", ProfesorView.as_view(), name="profesor"),
     path("api/validacionprofesor/", ValidacionProfesorView.as_view(), name="validacionprofesor"),
