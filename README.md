@@ -37,6 +37,7 @@ venv\Scripts\activate
 pip install django djangorestframework django-cors-headers psycopg2-binary
 pip install djangorestframework-simplejwt
 pip install Pillow
+pip install pandas openpyxl
 
 # Configurar Base de Datos
 python manage.py makemigrations
