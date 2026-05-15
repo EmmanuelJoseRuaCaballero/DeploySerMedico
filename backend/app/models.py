@@ -17,7 +17,7 @@ class CoordinadorCurso(models.Model):
         return f"{self.nombre_1} {self.apellido_1}"
     
 class Profesor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
     cedula_profesor = models.IntegerField(unique=True)
     nombre_1 = models.CharField(max_length=100)
@@ -26,7 +26,6 @@ class Profesor(models.Model):
     apellido_2 = models.CharField(max_length=100, null=True, blank=True)
 
     estado = models.BooleanField(default=True)
-    curso = models.CharField(max_length=100)
 
     coordinadorcurso = models.ForeignKey(
         CoordinadorCurso,
@@ -35,6 +34,23 @@ class Profesor(models.Model):
 
     def __str__(self):
         return f"{self.nombre_1} {self.apellido_1}"
+
+class Cursos(models.Model):
+    nombre = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre
+    
+class ProfesorCurso(models.Model):
+    profesor = models.ForeignKey(
+        Profesor,
+        on_delete=models.CASCADE
+    )
+
+    curso = models.ForeignKey(
+        Cursos,
+        on_delete=models.CASCADE
+    )
 
 class CohorteIngreso(models.Model):
     anio = models.IntegerField()

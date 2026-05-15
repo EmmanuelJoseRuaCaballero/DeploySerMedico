@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { sileo } from "sileo";
 import API_URL from "@/lib/config";
 
-interface Usuario {
+interface Estudiante {
   cedula_estudiante: number;
   nombre: string;
   semestre: number;
@@ -24,7 +24,7 @@ interface Usuario {
 }
 
 export default function Students_profesor() {
-  const [estudiantes, setEstudiantes] = useState<Usuario[]>([]);
+  const [estudiantes, setEstudiantes] = useState<Estudiante[]>([]);
   const [estadoProfesor, setEstadoProfesor] = React.useState<boolean>();
   const [search, setSearch] = useState("");
   const [seleccionados, setSeleccionados] = useState<number[]>([]);
@@ -36,7 +36,7 @@ export default function Students_profesor() {
       item.cedula_estudiante.toString().includes(search),
   );
 
-  const handleCheckboxChange = (user: Usuario) => {
+  const handleCheckboxChange = (user: Estudiante) => {
     setSeleccionados((prev) =>
       prev.includes(user.cedula_estudiante)
         ? prev.filter((id) => id !== user.cedula_estudiante)

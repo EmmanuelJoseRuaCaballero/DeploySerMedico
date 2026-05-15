@@ -26,12 +26,12 @@ class EstudianteView(APIView):
             for estudiante in estudiantes:
                 lista_estudiantes.append({
                     "cedula_estudiante": estudiante.cedula_estudiante,
-                    "nombre": (
-                        f"{estudiante.nombre_1} " 
-                        f"{estudiante.nombre_2} " 
-                        f"{estudiante.apellido_1} "
-                        f"{estudiante.apellido_2} "
-                    ),
+                    "nombre": " ".join(filter(None, [
+                        estudiante.nombre_1,
+                        estudiante.nombre_2,
+                        estudiante.apellido_1,
+                        estudiante.apellido_2,
+                    ])),
                     "semestre": estudiante.semestre,
                     "estado": estudiante.estado,
                 })

@@ -12,7 +12,12 @@ class PerfilView(APIView):
             perfil = user.estudiante
             return Response({
                 "cedula": perfil.cedula_estudiante,
-                "nombre": f"{perfil.nombre_1} {perfil.nombre_2} {perfil.apellido_1} {perfil.apellido_2}",
+                "nombre": " ".join(filter(None, [
+                    perfil.nombre_1,
+                    perfil.nombre_2,
+                    perfil.apellido_1,
+                    perfil.apellido_2,
+                ])),
                 "rol": "Estudiante"
             })
 
@@ -20,7 +25,12 @@ class PerfilView(APIView):
             perfil = user.profesor
             return Response({
                 "cedula": perfil.cedula_profesor,
-                "nombre": f"{perfil.nombre_1} {perfil.nombre_2} {perfil.apellido_1} {perfil.apellido_2}",
+                "nombre": " ".join(filter(None, [
+                    perfil.nombre_1,
+                    perfil.nombre_2,
+                    perfil.apellido_1,
+                    perfil.apellido_2,
+                ])),
                 "rol": "Profesor"
             })
         
@@ -28,6 +38,11 @@ class PerfilView(APIView):
             perfil = user.coordinadorcurso
             return Response({
                 "cedula": perfil.cedula_coord_curso,
-                "nombre": f"{perfil.nombre_1} {perfil.nombre_2} {perfil.apellido_1} {perfil.apellido_2}",
+                "nombre": " ".join(filter(None, [
+                    perfil.nombre_1,
+                    perfil.nombre_2,
+                    perfil.apellido_1,
+                    perfil.apellido_2,
+                ])),
                 "rol": "CoordinadorCurso"
             })

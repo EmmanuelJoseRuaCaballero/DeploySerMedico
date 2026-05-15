@@ -110,7 +110,7 @@ class ValidacionProfesorView(APIView):
                 estado_profesor.save()
 
             return Response(
-                {"estado": estado_profesor.estado},
+                {"estado": estado_profesor.estado, "contador": contador},
                 status=status.HTTP_200_OK
             )
         except Exception as e:

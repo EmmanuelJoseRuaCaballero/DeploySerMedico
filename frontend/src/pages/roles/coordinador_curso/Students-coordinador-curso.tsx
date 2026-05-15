@@ -5,6 +5,15 @@ import { authFetch } from "@/lib/authFetch";
 import API_URL from "@/lib/config";
 import { Button } from "@/components/ui/button";
 import { FileCard } from "@/pages/roles/coordinador_curso/FileCard";
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface ErroresCarga {
   [fila: string]: {
@@ -12,10 +21,45 @@ interface ErroresCarga {
   };
 }
 
+interface Estudiante {
+  cedula_estudiante: number;
+  nombre: string;
+  semestre: number;
+  estado: boolean;
+}
+
 export default function Students_coordinadorCurso() {
   const [file, setFile] = useState<File | null>(null);
   const [dragging, setDragging] = useState(false);
   const [errores, setErrores] = useState<ErroresCarga | null>(null);
+  const [estudiantes, setEstudiantes] = useState<Estudiante[]>([]);
+
+  // APIS
+  const fetched = React.useRef(false);
+  React.useEffect(() => {
+    if (fetched.current) return;
+    fetched.current = true;
+
+    const cargarDatos = async () => {
+      try {
+        const [estudianteRes] = await Promise.all([
+          fetch(`${API_URL}/api/estudiante/`),
+        ]);
+
+        const estudianteData = await estudianteRes.json();
+
+        setEstudiantes(estudianteData);
+      } catch {
+        sileo.error({
+          title: "Error",
+          description: "Ha ocurrido un problema conexion con el servidor",
+          duration: 3000,
+          position: "top-center",
+        });
+      }
+    };
+    cargarDatos();
+  });
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -76,7 +120,7 @@ export default function Students_coordinadorCurso() {
               Estudiantes actualizados: {data.actualizados}
             </>
           ),
-          position: "top-right",
+          position: "top-center",
         });
       }
     } catch {
@@ -215,7 +259,9 @@ export default function Students_coordinadorCurso() {
                 <div className="max-h-96 overflow-auto text-sm space-y-3">
                   {Object.entries(errores).map(([fila, campos]) => (
                     <div key={fila} className="border-b pb-2">
-                      <p className="font-medium text-red-700">Fila {fila}</p>
+                      <p className="font-medium text-red-700">
+                        Fila {Number(fila) + 1}
+                      </p>
 
                       {Object.entries(campos).map(([campo, msgs]) => (
                         <div key={campo} className="ml-3">
@@ -232,6 +278,51 @@ export default function Students_coordinadorCurso() {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+        <div className="bg-card rounded-xl p-6 shadow-sm border border-border">
+          <div className="relative w-full overflow-hidden rounded-xl border border-gray-300">
+            <Table className="min-w-[700px] ">
+              <TableHeader>
+                <TableRow className="bg-muted/50">
+                  <TableHead>Cédula</TableHead>
+                  <TableHead>Nombre</TableHead>
+                  <TableHead>Semestre</TableHead>
+                </TableRow>
+              </TableHeader>
+
+              <TableBody>
+                {estudiantes.length > 0 ? (
+                  estudiantes.map((estudiante) => (
+                    <TableRow
+                      key={estudiante.cedula_estudiante}
+                      className={`transition hover:bg-muted/40`}
+                    >
+                      <TableCell className="font-medium">
+                        {estudiante.cedula_estudiante}
+                      </TableCell>
+
+                      <TableCell>{estudiante.nombre}</TableCell>
+
+                      <TableCell>
+                        <span className="px-2 py-1 bg-muted rounded text-xs">
+                          {estudiante.semestre}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell
+                      colSpan={5}
+                      className="text-center py-10 text-muted-foreground"
+                    >
+                      No hay resultados
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
           </div>
         </div>
       </div>

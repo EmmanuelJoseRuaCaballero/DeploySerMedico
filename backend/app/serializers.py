@@ -21,7 +21,17 @@ class ProfesorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profesor
         fields = ["id", "user", "cedula_profesor", "nombre_1", "nombre_2", 
-                  "apellido_1", "apellido_2", "estado", "curso"]
+                  "apellido_1", "apellido_2", "estado",]
+
+class CursosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cursos
+        fields = "__all__"
+
+class ProfesorCursoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfesorCurso
+        fields = "__all__"
 
 class BorradorAutoevaluacionSerializer(serializers.ModelSerializer):
     class Meta:
