@@ -62,7 +62,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="p-6 border-b border-sidebar-border">
           <div className="bg-white h-16 rounded-lg flex items-center justify-center mb-4">
             <span className="text-sm font-medium text-white">
-              <img src="/assets/unisimon-logo-50-year.png" alt="logo" />
+              <img src="/assets/LOGO_PROGRAMA_DE_MEDICINA.jpeg" alt="logo" />
             </span>
           </div>
           <h1 className="text-lg font-bold text-white">

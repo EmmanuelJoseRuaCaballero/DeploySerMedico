@@ -428,7 +428,7 @@ export default function AcademicProgress_estudiante() {
                   <Line
                     type="monotone"
                     dataKey={"estudiante"}
-                    stroke="#e0ca01"
+                    stroke="#FFAD17"
                     strokeWidth={isMobile ? 2 : 3}
                     dot={{ r: isMobile ? 2 : 4 }}
                     activeDot={{ r: isMobile ? 4 : 6 }}
@@ -439,7 +439,7 @@ export default function AcademicProgress_estudiante() {
                   <Line
                     type="monotone"
                     dataKey="profesor"
-                    stroke="#059669"
+                    stroke="#09843B"
                     strokeWidth={isMobile ? 2 : 3}
                     dot={{ r: isMobile ? 2 : 4 }}
                     activeDot={{ r: isMobile ? 4 : 6 }}

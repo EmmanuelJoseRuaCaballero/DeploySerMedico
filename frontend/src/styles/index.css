@@ -4,116 +4,114 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Paleta Universidad Simón Bolívar (USB)
+  Verde oficial: #09843B — RGB 9, 132, 59 — CMYK 86% 22% 97% 7%
+  Secundarios derivados de los valores CMYK institucionales (aprox. sRGB).
+*/
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Tokens de marca (referencia CMYK → sRGB) */
+    --usb-verde: 144.4 87.2% 27.6%;
+    --usb-verde-oscuro: 125.5 74.1% 28.8%;
+    --usb-turquesa: 164.1 59.2% 50%;
+    --usb-turquesa-suave: 169.3 55% 89%;
+    --usb-oro: 38.8 100% 54.5%;
+    --usb-azul: 222 96% 47.1%;
+    --usb-menta: 134.2 61.4% 81%;
+    --usb-crema: 62.1 90.3% 87.8%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --secondary: 210 40% 96.1%;
-    --muted: 210 40% 96.1%;
-    --accent: 210 40% 96.1%;
-    --destructive: 0 84.2% 60.2%;
-
-    --card: 0 0% 100%;
-    --popover: 0 0% 100%;
-
-    --radius: 0.5rem;
-
-    /* Medical Theme */
-    --medical-blue: 214 75% 19%;
-    --medical-red: 348 84% 40%;
-    --medical-teal: 177 58% 47%;
-    --medical-light: 210 40% 97%;
-    --medical-gray: 217 13% 45%;
-
-    --background: 208 33% 97%;
-    --foreground: 200 9% 47%;
+    --background: 144 25% 97%;
+    --foreground: 145 30% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 200 9% 47%;
+    --card-foreground: 145 30% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 200 9% 47%;
+    --popover-foreground: 145 30% 18%;
 
-    --primary: 214 61% 19%;
+    --primary: 144.4 87.2% 27.6%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 177 60% 50%;
+    --secondary: 222 96% 47.1%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 208 33% 92%;
-    --muted-foreground: 200 9% 60%;
+    --muted: 144 22% 93%;
+    --muted-foreground: 145 12% 40%;
 
-    --accent: 353 83% 40%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 62.1 90.3% 87.8%;
+    --accent-foreground: 144.4 87% 22%;
 
-    --destructive: 353 83% 40%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 208 33% 92%;
-    --input: 208 33% 92%;
-    --ring: 214 61% 19%;
+    --border: 144 18% 88%;
+    --input: 144 18% 88%;
+    --ring: 144.4 87.2% 27.6%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 214 61% 19%;
-
+    --sidebar-background: 144.4 87.2% 27.6%;
     --sidebar-foreground: 0 0% 100%;
-
-    --sidebar-primary: 214 61% 19%;
-
+    --sidebar-primary: 125.5 74.1% 28.8%;
     --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 38.8 95% 48%;
+    --sidebar-accent-foreground: 145 40% 12%;
+    --sidebar-border: 144 50% 32%;
+    --sidebar-ring: 164.1 59.2% 50%;
 
-    --sidebar-accent: 353 83% 40%;
-
-    --sidebar-accent-foreground: 0 0% 100%;
-
-    --sidebar-border: 214 61% 25%;
-
-    --sidebar-ring: 177 60% 50%;
+    /* medical-* conserva nombres por compatibilidad; ahora reflejan la marca USB */
+    --medical-blue: 144.4 87.2% 27.6%;
+    --medical-red: 0 72% 51%;
+    --medical-teal: 164.1 59.2% 50%;
+    --medical-light: 144 30% 96%;
+    --medical-gray: 166 20% 38%;
   }
 
   .dark {
-    --background: 214 25% 12%;
-    --foreground: 0 0% 100%;
+    --background: 145 28% 10%;
+    --foreground: 0 0% 98%;
 
-    --card: 214 25% 15%;
-    --card-foreground: 0 0% 100%;
+    --card: 145 25% 14%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 214 25% 15%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 145 25% 14%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 214 61% 19%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 143 61% 48%;
+    --primary-foreground: 145 40% 8%;
 
-    --secondary: 177 60% 50%;
+    --secondary: 213 90% 55%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 214 25% 25%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 145 20% 18%;
+    --muted-foreground: 145 12% 72%;
 
-    --accent: 353 83% 40%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 145 22% 22%;
+    --accent-foreground: 134 55% 78%;
 
-    --destructive: 353 83% 40%;
+    --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 25% 20%;
-    --input: 214 25% 20%;
-    --ring: 177 60% 50%;
-    --sidebar-background: 214 61% 19%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 214 61% 19%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 353 83% 40%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 214 61% 25%;
-    --sidebar-ring: 177 60% 50%;
+    --border: 145 18% 22%;
+    --input: 145 18% 22%;
+    --ring: 143 61% 48%;
+
+    --sidebar-background: 145 32% 12%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 143 61% 48%;
+    --sidebar-primary-foreground: 145 40% 8%;
+    --sidebar-accent: 145 22% 20%;
+    --sidebar-accent-foreground: 134 55% 80%;
+    --sidebar-border: 145 25% 22%;
+    --sidebar-ring: 164 50% 48%;
+
+    --medical-blue: 143 61% 48%;
+    --medical-red: 0 62.8% 50%;
+    --medical-teal: 164 50% 48%;
+    --medical-light: 145 22% 16%;
+    --medical-gray: 165 15% 70%;
   }
 
   body {

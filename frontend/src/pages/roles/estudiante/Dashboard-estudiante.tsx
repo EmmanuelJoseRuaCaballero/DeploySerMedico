@@ -85,12 +85,12 @@ export default function Dashboard_estudiante() {
           {
             name: "Real",
             value: estadisticasProcedimientoData.totales.real,
-            fill: "#3b82f6",
+            fill: "#09843B",
           },
           {
             name: "Simulado",
             value: estadisticasProcedimientoData.totales.simulado,
-            fill: "#e0ca01",
+            fill: "#FFAD17",
           },
         ]);
         setUltimasAutoevaluaciones(ultimasAutoevaluacionesData);
@@ -176,7 +176,7 @@ export default function Dashboard_estudiante() {
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#3d3939",
+                    backgroundColor: "#1C402A",
                     border: "none",
                     borderRadius: "10px",
                     color: "#fff",
@@ -199,7 +199,7 @@ export default function Dashboard_estudiante() {
 
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: "#3d3939",
+                        backgroundColor: "#1C402A",
                         border: "none",
                         borderRadius: "10px",
                         color: "#fff",
@@ -211,7 +211,7 @@ export default function Dashboard_estudiante() {
                     <Bar
                       dataKey="real"
                       stackId="total"
-                      fill="#3b82f6"
+                      fill="#09843B"
                       name="Real"
                       isAnimationActive
                     />
@@ -219,7 +219,7 @@ export default function Dashboard_estudiante() {
                     <Bar
                       dataKey="simulado"
                       stackId="total"
-                      fill="#e0ca01"
+                      fill="#FFAD17"
                       name="Simulado"
                       radius={[6, 6, 0, 0]}
                       isAnimationActive

@@ -78,7 +78,7 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
 
-        /* ---- Medical Theme (Tu parte agregada) ---- */
+        /* ---- Medical Theme ---- */
 
         medical: {
           blue: "hsl(var(--medical-blue))",
@@ -86,6 +86,18 @@ export default {
           teal: "hsl(var(--medical-teal))",
           light: "hsl(var(--medical-light))",
           gray: "hsl(var(--medical-gray))",
+        },
+
+        /* Universidad Simón Bolívar — tokens de marca (ver index.css) */
+        usb: {
+          verde: "hsl(var(--usb-verde))",
+          "verde-oscuro": "hsl(var(--usb-verde-oscuro))",
+          turquesa: "hsl(var(--usb-turquesa))",
+          "turquesa-suave": "hsl(var(--usb-turquesa-suave))",
+          oro: "hsl(var(--usb-oro))",
+          azul: "hsl(var(--usb-azul))",
+          menta: "hsl(var(--usb-menta))",
+          crema: "hsl(var(--usb-crema))",
         },
       },
 

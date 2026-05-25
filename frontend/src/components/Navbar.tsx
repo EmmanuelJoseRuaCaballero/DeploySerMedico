@@ -78,7 +78,7 @@ export function Navbar({ onMenuClick }: NavbarProps) {
   };
 
   const handleClickNotificacion = (n: Notificacion) => {
-    console.log(n)
+    console.log(n);
     if (!n.leida) marcarLeida(n.id);
     if (esNotificacionAutoevaluacion(n)) {
       setPanelAbierto(false);
@@ -260,12 +260,12 @@ export function Navbar({ onMenuClick }: NavbarProps) {
         </div>
 
         {/* Divider (desktop only) */}
-        <div className="hidden md:block h-6 w-px bg-border"></div>
+        <div className="hidden md:block h-6 w-px" style={{ backgroundColor: "#000000" }}></div>
 
         {/* Logout Button */}
         <button
           onClick={logout}
-          className="flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg border border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-colors font-medium text-xs md:text-sm"
+          className="flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg border border-primary/45 text-primary hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors font-medium text-xs md:text-sm"
         >
           <LogOut size={16} />
           <span className="hidden sm:inline">Cerrar sesión</span>

@@ -103,7 +103,7 @@ export default function Index() {
       {/* Left Side - Medical Image with Overlay */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-medical-blue/90 to-medical-blue/70">
         {/* Medical Image Background */}
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-medical-blue via-medical-blue to-[hsl(177_58%_50%)] opacity-40">
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-medical-blue via-medical-blue to-medical-teal opacity-40">
           <div className="text-center text-white/60">
             <svg
               className="w-32 h-32 mx-auto mb-4 opacity-40"
@@ -212,7 +212,7 @@ export default function Index() {
               {/* Login Button */}
               <button
                 type="submit"
-                className="w-full bg-medical-blue hover:bg-[hsl(214_75%_15%)] text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md hover:shadow-lg"
+                className="w-full bg-medical-blue hover:bg-[hsl(144_87%_22%)] text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md hover:shadow-lg"
               >
                 Acceder
               </button>
