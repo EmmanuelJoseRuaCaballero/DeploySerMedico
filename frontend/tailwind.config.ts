@@ -88,7 +88,7 @@ export default {
           gray: "hsl(var(--medical-gray))",
         },
 
-        /* Universidad Simón Bolívar — tokens de marca (ver index.css) */
+        /* Universidad Simón Bolívar — tokens de marca */
         usb: {
           verde: "hsl(var(--usb-verde))",
           "verde-oscuro": "hsl(var(--usb-verde-oscuro))",
@@ -112,7 +112,7 @@ export default {
       },
 
       /* =====================================================
-         ANIMATIONS (Tu sistema original conservado)
+         ANIMATIONS
       ====================================================== */
 
       keyframes: {

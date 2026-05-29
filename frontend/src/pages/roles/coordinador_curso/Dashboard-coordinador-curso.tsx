@@ -655,20 +655,20 @@ export default function DashboardCoordinadorCurso() {
               key={idx}
               className="border-b hover:bg-slate-50 transition"
             >
-              <td className="p-3 font-medium sticky left-0 bg-white border-r">
+              <td className="p-1 font-medium sticky left-0 bg-white border-r">
                 {row.estudiante}
               </td>
 
               {data.procedimientos_matriz.map((p) => (
                 <td
                   key={p.id}
-                  className="p-3 text-center"
+                  className=" text-center"
                 >
                   {Number(row[p.nombre] ?? 0)}
                 </td>
               ))}
 
-              <td className="p-3 text-center font-bold bg-blue-50">
+              <td className=" text-center font-bold bg-blue-50">
                 {row.total}
               </td>
             </tr>

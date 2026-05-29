@@ -7,18 +7,8 @@ from ..models import (
 ) 
 
 class EstudianteView(APIView):
-    """
-    API Estudiante
-    """
+    # Retorna listado todos los estudiantes
     def get(self, request):
-        """
-        Retornar todos los estudiante
-         
-        Returns:
-            Response:
-                200: Retornar la lista de los estudiantes
-                500: Error interno del servidor
-        """
         try:
             estudiantes = Estudiante.objects.all().order_by("cedula_estudiante")
 
@@ -47,20 +37,8 @@ class EstudianteView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
     
+    # Actualizar estado del estudiante
     def patch(self, request):
-        """
-       Actualizar el estado de múltiples estudiantes
-
-        Args:
-            request (Request): objeto con los datos enviados en el body
-        Body:
-            nuevo_estado (boolean): nuevo estado del estudiante
-        Returns:
-            Response:
-                200: Estado actualizado correctamente
-                403: Acceso prohibido (rol)
-                500: Error interno del servidor
-        """
         try:
             user = request.user
             data = request.data
@@ -94,9 +72,6 @@ class EstudianteView(APIView):
             )
 
 class ValidacionEstudianteView(APIView):
-    """
-    API Validacion Estudiante
-    """
     def post(self, request):
         try:
             user = request.user
@@ -128,6 +103,7 @@ class ValidacionEstudianteView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
+    # Verificar el estado del estudiante
     def get(self, request):
         try:
             user = request.user

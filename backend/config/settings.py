@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-dkl6#*fn6i9z_dzc5r2b_alx(u+5n+(pc0b#74yl9++z=6s#sn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["sermedico.onrender.com"]
 
 
 # Application definition
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -80,10 +81,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'prueba',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'NAME': 'postgresql_sermedico',
+        'USER': 'postgresql_sermedico_user',
+        'PASSWORD': 'zF3YyrfJSuhEvRBx3mxiaRb2midbQaXg',
+        'HOST': 'dpg-d8cerakp3tds73dq3kog-a',
         'PORT': '5432',
     }
 }
@@ -127,6 +128,7 @@ STATIC_URL = 'static/'
 # Agrego archivos subidos por usuarios que son las fotos de perfiles
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
